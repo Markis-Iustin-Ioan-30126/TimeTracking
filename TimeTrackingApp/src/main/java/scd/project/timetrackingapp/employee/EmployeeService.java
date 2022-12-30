@@ -15,6 +15,12 @@ public class EmployeeService {
 
     @Transactional
     public Employee addNewEmployee(Employee employee) {
+        List<Employee> employeeList = employeeRepository.findAll();
+        for (Employee employeeIterate : employeeList) {
+            if (employeeIterate.getPassword().equals(employee.getPassword())) {
+                return null;
+            }
+        }
         return employeeRepository.save(employee);
     }
 
@@ -46,13 +52,14 @@ public class EmployeeService {
     }
 
     @Transactional
-    public Employee modifyEmployee(Integer id, String newEmployeeName, String newHourlyRate) {
+    public Employee modifyEmployee(Integer id, String newEmployeeName, String newHourlyRate, String password) {
         Optional<Employee> optEmployee = employeeRepository.findById(id);
         if (optEmployee.isEmpty()) return null;
 
         Employee employee = optEmployee.get();
         employee.setName(newEmployeeName);
         employee.setHourlyRate(newHourlyRate);
+        employee.setPassword(password);
         return employeeRepository.save(employee);
     }
 }

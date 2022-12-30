@@ -11,8 +11,14 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private String hourlyRate;
 
     @Column(updatable = false, nullable = false)

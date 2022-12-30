@@ -36,10 +36,11 @@ public class EmployeeController {
         return employeeService.deleteEmployee(id);
     }
 
-    @PostMapping("/id={id}/employeeName={employeeName}/hourlyRate={hourlyRate}")
+    @PostMapping("/id={id}/employeeName={employeeName}/hourlyRate={hourlyRate}/password={password}")
     public Employee modifyEmployee(@PathVariable(value = "id") Integer id,
-                                 @PathVariable(value = "employeeName") String employeeName,
-                                 @PathVariable(value = "hourlyRate") String hourlyRate) {
-        return employeeService.modifyEmployee(id, employeeName, hourlyRate);
+                                   @PathVariable(value = "employeeName") String employeeName,
+                                   @PathVariable(value = "hourlyRate") String hourlyRate,
+                                   @PathVariable(value = "password") String password) {
+        return employeeService.modifyEmployee(id, employeeName, hourlyRate, password);
     }
 }
