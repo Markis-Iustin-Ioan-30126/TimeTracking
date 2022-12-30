@@ -12,6 +12,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String password;
     private String hourlyRate;
 
     @Column(updatable = false, nullable = false)
