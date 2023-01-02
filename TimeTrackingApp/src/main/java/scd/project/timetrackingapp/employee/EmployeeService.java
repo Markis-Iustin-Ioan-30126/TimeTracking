@@ -3,6 +3,7 @@ package scd.project.timetrackingapp.employee;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import scd.project.timetrackingapp.wrappers.AuthenticationWrapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,5 +62,19 @@ public class EmployeeService {
         employee.setHourlyRate(newHourlyRate);
         employee.setPassword(password);
         return employeeRepository.save(employee);
+    }
+
+    public Integer authenticateEmployee(AuthenticationWrapper wrapper) {
+        List<Employee> employeeList = employeeRepository.findAll();
+        Integer employeeId = -1;
+
+        for (Employee employee : employeeList) {
+            if (employee.getName().equals(wrapper.getName()) && employee.getPassword().equals(wrapper.getPassword())) {
+                employeeId = employee.getId();
+                break;
+            }
+        }
+
+        return employeeId;
     }
 }

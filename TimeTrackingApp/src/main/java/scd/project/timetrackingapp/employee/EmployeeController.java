@@ -2,6 +2,8 @@ package scd.project.timetrackingapp.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import scd.project.timetrackingapp.wrappers.AuthenticationWrapper;
+
 import java.util.List;
 
 @CrossOrigin
@@ -42,5 +44,10 @@ public class EmployeeController {
                                    @PathVariable(value = "hourlyRate") String hourlyRate,
                                    @PathVariable(value = "password") String password) {
         return employeeService.modifyEmployee(id, employeeName, hourlyRate, password);
+    }
+
+    @PostMapping("/auth")
+    public Integer authenticateEmployee(@RequestBody AuthenticationWrapper authenticationWrapper) {
+        return employeeService.authenticateEmployee(authenticationWrapper);
     }
 }

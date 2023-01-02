@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import scd.project.timetrackingapp.wrappers.LocalDateWrapper;
 import scd.project.timetrackingapp.wrappers.TimeTrackingRecordWrapper;
+import scd.project.timetrackingapp.wrappers.TimeTrackingStatWrapper;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class TimeTrackingController {
     }
 
     @GetMapping
-    public List<TimeTracking> getAllTimeTrackingRecords() {
+    public List<TimeTrackingStatWrapper> getAllTimeTrackingRecords() {
         return timeTrackingService.getAllTimeTrackingRecords();
     }
 
@@ -35,7 +37,7 @@ public class TimeTrackingController {
     }
 
     @GetMapping("/id={id}/year={year}/month={month}")
-    public List<TimeTracking> getWorkedHoursByEmployeePerMonth(@PathVariable(value = "id") Integer id,
+    public List<TimeTrackingStatWrapper> getWorkedHoursByEmployeePerMonth(@PathVariable(value = "id") Integer id,
                                                    @PathVariable(value = "year") Integer year,
                                                    @PathVariable(value = "month") Integer month) {
         return timeTrackingService.getWorkedHoursByEmployeePerMonth(id, year, month);

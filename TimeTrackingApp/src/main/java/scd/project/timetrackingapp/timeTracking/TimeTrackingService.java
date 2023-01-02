@@ -3,9 +3,9 @@ package scd.project.timetrackingapp.timeTracking;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import scd.project.timetrackingapp.employee.Employee;
 import scd.project.timetrackingapp.employee.EmployeeService;
 import scd.project.timetrackingapp.wrappers.TimeTrackingRecordWrapper;
+import scd.project.timetrackingapp.wrappers.TimeTrackingStatWrapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,6 +24,14 @@ public class TimeTrackingService {
     @Transactional
     public TimeTracking addTimeTrackingRecord(TimeTrackingRecordWrapper data) {
         TimeTracking timeTracking = new TimeTracking();
+        List<TimeTracking> timeTrackingList = timeTrackingRepository.findAll();
+        for (TimeTracking record : timeTrackingList) {
+            if (record.getCheckIn().getYear() == data.getYear() && record.getCheckIn().getMonth().getValue() == data.getMonth()
+            && record.getCheckIn().getDayOfMonth() == data.getDay() && record.getEmployee().getId() == data.getEmployeeId()) {
+                return null;
+            }
+        }
+
         timeTracking.setEmployee(employeeService.getEmployeeById(data.getEmployeeId()));
         timeTracking.setCheckIn(LocalDateTime.of(data.getYear(), data.getMonth(), data.getDay(), data.getCheckInHour(), data.getCheckInMinute(), data.getCheckInSecond()));
         timeTracking.setCheckOut(LocalDateTime.of(data.getYear(), data.getMonth(), data.getDay(), data.getCheckOutHour(), data.getCheckOutMinute(), data.getCheckOutSecond()));
@@ -31,8 +39,15 @@ public class TimeTrackingService {
         return timeTrackingRepository.save(timeTracking);
     }
 
-    public List<TimeTracking> getAllTimeTrackingRecords() {
-        return timeTrackingRepository.findAll();
+    public List<TimeTrackingStatWrapper> getAllTimeTrackingRecords() {
+        List<TimeTrackingStatWrapper> wrapperList = new ArrayList<>();
+        List<TimeTracking> timeTrackingList = timeTrackingRepository.findAll();
+
+        for (TimeTracking record : timeTrackingList) {
+            wrapperList.add(new TimeTrackingStatWrapper(record, ChronoUnit.MINUTES.between(record.getCheckIn(), record.getCheckOut())/60.0));
+        }
+
+        return wrapperList;
     }
 
     public double getAllWorkingHours() {
@@ -41,9 +56,9 @@ public class TimeTrackingService {
 
         double totalWorkedHours = 0;
         for (TimeTracking record : timeTrackingList) {
-            totalWorkedHours = totalWorkedHours + ChronoUnit.HOURS.between(record.getCheckIn(), record.getCheckOut());
+            totalWorkedHours = totalWorkedHours + ChronoUnit.MINUTES.between(record.getCheckIn(), record.getCheckOut());
         }
-        return  totalWorkedHours;
+        return  totalWorkedHours/60;
     }
 
     public double getWorkedHoursByEmployee(Integer id) {
@@ -60,8 +75,9 @@ public class TimeTrackingService {
         return totalWorkedHours;
     }
 
-    public List<TimeTracking> getWorkedHoursByEmployeePerMonth(Integer id, Integer year, Integer month) {
+    public List<TimeTrackingStatWrapper> getWorkedHoursByEmployeePerMonth(Integer id, Integer year, Integer month) {
         List<TimeTracking> timeTrackingList = timeTrackingRepository.findAll();
+        List<TimeTrackingStatWrapper> wrapperList = new ArrayList<>();
         if (timeTrackingList.isEmpty()) return null;
 
         List<TimeTracking> filteredTimeTrackingList = timeTrackingList
@@ -71,7 +87,11 @@ public class TimeTrackingService {
         filteredTimeTrackingList = new ArrayList<>(filteredTimeTrackingList);
         Collections.sort(filteredTimeTrackingList, Collections.reverseOrder());
 
-        return filteredTimeTrackingList;
+        for (TimeTracking record : filteredTimeTrackingList) {
+            wrapperList.add(new TimeTrackingStatWrapper(record, ChronoUnit.MINUTES.between(record.getCheckIn(), record.getCheckOut())/60.0));
+        }
+
+        return wrapperList;
     }
 
     public boolean deleteRecordByDay(Integer id, LocalDate date) {

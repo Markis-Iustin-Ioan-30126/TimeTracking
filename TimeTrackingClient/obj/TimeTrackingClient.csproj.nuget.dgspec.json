@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTrackingClient\\TimeTrackingClient.csproj": {}
+    "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTracking\\TimeTrackingClient\\TimeTrackingClient.csproj": {}
   },
   "projects": {
-    "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTrackingClient\\TimeTrackingClient.csproj": {
+    "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTracking\\TimeTrackingClient\\TimeTrackingClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTrackingClient\\TimeTrackingClient.csproj",
+        "projectUniqueName": "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTracking\\TimeTrackingClient\\TimeTrackingClient.csproj",
         "projectName": "TimeTrackingClient",
-        "projectPath": "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTrackingClient\\TimeTrackingClient.csproj",
+        "projectPath": "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTracking\\TimeTrackingClient\\TimeTrackingClient.csproj",
         "packagesPath": "C:\\Users\\iusti\\.nuget\\packages\\",
-        "outputPath": "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTrackingClient\\obj\\",
+        "outputPath": "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTracking\\TimeTrackingClient\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

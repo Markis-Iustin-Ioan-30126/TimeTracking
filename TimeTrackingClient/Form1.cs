@@ -28,13 +28,16 @@ namespace TimeTrackingClient
                 if (checkIn.Length == 3 && checkOut.Length == 3)
                 {
 
-                    TimeTrackingRecordWrapper record = new TimeTrackingRecordWrapper(1, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                    TimeTrackingRecordWrapper record = new TimeTrackingRecordWrapper(Employee.Id, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
                         int.Parse(checkIn[0]), int.Parse(checkIn[1]), int.Parse(checkIn[2]),
                         int.Parse(checkOut[0]), int.Parse(checkOut[1]), int.Parse(checkOut[2]));
                     Boolean response = Service.AddNewTimeRecord(record);
                     if (response)
                     {
                         MessageBox.Show("Record added successfully!");
+                    } else
+                    {
+                        MessageBox.Show("There is already a saved record for the day!");
                     }
                 }
             } catch (Exception ex)

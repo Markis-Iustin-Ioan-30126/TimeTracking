@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+IuUcrBR2rzXgYD1446yxvhIxUczipCCdbmBKhkrs24sxXdwfGxzoATkRdUJCzYqKvnh9Y8XcEPc2Ro+1a78KQ==",
+  "dgSpecHash": "vx2+oYd6/5FiVqnXyM0z3jlRu08PNv6oq9fRmi7IXUin/h5RZ9iEVDOnlSUuiCgISbzzrGNjInFhPCxjGGE9WQ==",
   "success": true,
-  "projectFilePath": "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTrackingClient\\TimeTrackingClient.csproj",
+  "projectFilePath": "D:\\FACULTATE\\An 4\\Sisteme de control distribuit\\Proiect\\TimeTracking\\TimeTrackingClient\\TimeTrackingClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\iusti\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
   ],
