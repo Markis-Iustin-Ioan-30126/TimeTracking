@@ -13,8 +13,6 @@ namespace TimeTrackingClient
             Service.CreateConnection();
             Employee = Service.GetEmployeeById(employeeId);
             welcomeLabel.Text = "Welcome, "+Employee.Name+"!";
-            DateTime today = DateTime.Now;
-            dateLabel.Text = "Enter your working time interval\nfor today: " + today.Year + "-" + today.Month + "-" + today.Day;
         }
 
         private void submitBtn_Click(object sender, EventArgs e)
@@ -25,10 +23,12 @@ namespace TimeTrackingClient
             {
                 checkIn = checkInInput.Text.Split(":");
                 checkOut = checkOutInput.Text.Split(":");
+                var dateTimeStr = dateInput.Text.Split("-");
+                DateTime dateTime = new DateTime(int.Parse(dateTimeStr[0]), int.Parse(dateTimeStr[1]), int.Parse(dateTimeStr[2]));
                 if (checkIn.Length == 3 && checkOut.Length == 3)
                 {
 
-                    TimeTrackingRecordWrapper record = new TimeTrackingRecordWrapper(Employee.Id, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                    TimeTrackingRecordWrapper record = new TimeTrackingRecordWrapper(Employee.Id, dateTime.Year, dateTime.Month, dateTime.Day,
                         int.Parse(checkIn[0]), int.Parse(checkIn[1]), int.Parse(checkIn[2]),
                         int.Parse(checkOut[0]), int.Parse(checkOut[1]), int.Parse(checkOut[2]));
                     Boolean response = Service.AddNewTimeRecord(record);

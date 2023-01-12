@@ -68,7 +68,7 @@ public class TimeTrackingService {
         double totalWorkedHours = 0;
         for (TimeTracking record : timeTrackingList) {
             if (record.getEmployee().getId() == id) {
-                totalWorkedHours = totalWorkedHours + ChronoUnit.HOURS.between(record.getCheckIn(), record.getCheckOut());
+                totalWorkedHours = totalWorkedHours + ChronoUnit.MINUTES.between(record.getCheckIn(), record.getCheckOut())/60.0;
             }
         }
 

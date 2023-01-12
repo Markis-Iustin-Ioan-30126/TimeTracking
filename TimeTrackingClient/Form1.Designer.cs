@@ -30,21 +30,23 @@ namespace TimeTrackingClient
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateLabel = new System.Windows.Forms.Label();
+            this.exitAppBtn = new System.Windows.Forms.Button();
             this.submitBtn = new System.Windows.Forms.Button();
             this.checkOutLabel = new System.Windows.Forms.Label();
             this.checkInLabel = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.checkOutInput = new System.Windows.Forms.TextBox();
             this.checkInInput = new System.Windows.Forms.TextBox();
-            this.exitAppBtn = new System.Windows.Forms.Button();
+            this.dateInput = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.dateInput);
             this.groupBox1.Controls.Add(this.exitAppBtn);
-            this.groupBox1.Controls.Add(this.dateLabel);
             this.groupBox1.Controls.Add(this.submitBtn);
             this.groupBox1.Controls.Add(this.checkOutLabel);
             this.groupBox1.Controls.Add(this.checkInLabel);
@@ -53,23 +55,24 @@ namespace TimeTrackingClient
             this.groupBox1.Controls.Add(this.checkInInput);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 306);
+            this.groupBox1.Size = new System.Drawing.Size(264, 323);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Time Tracking";
             // 
-            // dateLabel
+            // exitAppBtn
             // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(18, 66);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(72, 15);
-            this.dateLabel.TabIndex = 13;
-            this.dateLabel.Text = "Today\'s date";
+            this.exitAppBtn.Location = new System.Drawing.Point(18, 287);
+            this.exitAppBtn.Name = "exitAppBtn";
+            this.exitAppBtn.Size = new System.Drawing.Size(216, 30);
+            this.exitAppBtn.TabIndex = 14;
+            this.exitAppBtn.Text = "Exit";
+            this.exitAppBtn.UseVisualStyleBackColor = true;
+            this.exitAppBtn.Click += new System.EventHandler(this.exitAppBtn_Click);
             // 
             // submitBtn
             // 
-            this.submitBtn.Location = new System.Drawing.Point(18, 228);
+            this.submitBtn.Location = new System.Drawing.Point(18, 251);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(216, 30);
             this.submitBtn.TabIndex = 12;
@@ -80,20 +83,20 @@ namespace TimeTrackingClient
             // checkOutLabel
             // 
             this.checkOutLabel.AutoSize = true;
-            this.checkOutLabel.Location = new System.Drawing.Point(18, 171);
+            this.checkOutLabel.Location = new System.Drawing.Point(18, 198);
             this.checkOutLabel.Name = "checkOutLabel";
-            this.checkOutLabel.Size = new System.Drawing.Size(61, 15);
+            this.checkOutLabel.Size = new System.Drawing.Size(121, 15);
             this.checkOutLabel.TabIndex = 11;
-            this.checkOutLabel.Text = "Check out";
+            this.checkOutLabel.Text = "Check out(hh:mm:ss)";
             // 
             // checkInLabel
             // 
             this.checkInLabel.AutoSize = true;
-            this.checkInLabel.Location = new System.Drawing.Point(18, 121);
+            this.checkInLabel.Location = new System.Drawing.Point(18, 148);
             this.checkInLabel.Name = "checkInLabel";
-            this.checkInLabel.Size = new System.Drawing.Size(53, 15);
+            this.checkInLabel.Size = new System.Drawing.Size(113, 15);
             this.checkInLabel.TabIndex = 10;
-            this.checkInLabel.Text = "Check in";
+            this.checkInLabel.Text = "Check in(hh:mm:ss)";
             // 
             // welcomeLabel
             // 
@@ -107,33 +110,39 @@ namespace TimeTrackingClient
             // 
             // checkOutInput
             // 
-            this.checkOutInput.Location = new System.Drawing.Point(18, 189);
+            this.checkOutInput.Location = new System.Drawing.Point(18, 216);
             this.checkOutInput.Name = "checkOutInput";
             this.checkOutInput.Size = new System.Drawing.Size(216, 23);
             this.checkOutInput.TabIndex = 8;
             // 
             // checkInInput
             // 
-            this.checkInInput.Location = new System.Drawing.Point(18, 139);
+            this.checkInInput.Location = new System.Drawing.Point(18, 166);
             this.checkInInput.Name = "checkInInput";
             this.checkInInput.Size = new System.Drawing.Size(216, 23);
             this.checkInInput.TabIndex = 7;
             // 
-            // exitAppBtn
+            // dateInput
             // 
-            this.exitAppBtn.Location = new System.Drawing.Point(18, 264);
-            this.exitAppBtn.Name = "exitAppBtn";
-            this.exitAppBtn.Size = new System.Drawing.Size(216, 30);
-            this.exitAppBtn.TabIndex = 14;
-            this.exitAppBtn.Text = "Exit";
-            this.exitAppBtn.UseVisualStyleBackColor = true;
-            this.exitAppBtn.Click += new System.EventHandler(this.exitAppBtn_Click);
+            this.dateInput.Location = new System.Drawing.Point(18, 95);
+            this.dateInput.Name = "dateInput";
+            this.dateInput.Size = new System.Drawing.Size(216, 23);
+            this.dateInput.TabIndex = 15;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(155, 15);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Enter date(year-month-day)";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 326);
+            this.ClientSize = new System.Drawing.Size(288, 347);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Time Tracking Client";
@@ -152,8 +161,9 @@ namespace TimeTrackingClient
         private System.Windows.Forms.TextBox checkOutInput;
         private System.Windows.Forms.TextBox checkInInput;
         private System.Windows.Forms.Button submitBtn;
-        private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Button exitAppBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox dateInput;
     }
 }
 
